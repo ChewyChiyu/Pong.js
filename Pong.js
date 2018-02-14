@@ -24,9 +24,19 @@ class GameObject{
 	}
 
 	isOverlapping(x,y,w,h) {
- 	 	var middleX = x + w/2
- 	 	var middleY = y + h/2
- 	 	return (this.x < middleX && this.x + this.w > middleX && this.y < middleY && this.y + this.h > middleY)
+		
+		var rect1 = {x: this.x, y: this.y, width: this.w, height: this.h}
+		var rect2 = {x: x, y: y, width: w, height: h}
+
+		if (rect1.x < rect2.x + rect2.width &&
+			rect1.x + rect1.width > rect2.x &&
+			rect1.y < rect2.y + rect2.height &&
+			rect1.height + rect1.y > rect2.y) {
+			return true
+		}
+
+		return false
+		
 	}
 
 	
@@ -141,7 +151,7 @@ function update(){
 		ball.dy *= -1
 	}
 
-	if(paddleLeft.isOverlapping(ball.x - ball.w/2 ,ball.y - ball.w/2 , ball.w, ball.h) || paddleRight.isOverlapping(ball.x - ball.w/2,ball.y - ball.w/2, ball.w, ball.h)){
+	if(paddleLeft.isOverlapping(ball.x ,ball.y , ball.w, ball.h) || paddleRight.isOverlapping(ball.x ,ball.y, ball.w, ball.h)){
 		ball.dx *= -1
 	}
 
