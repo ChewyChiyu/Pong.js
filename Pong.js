@@ -24,19 +24,13 @@ class GameObject{
 	}
 
 	isOverlapping(x,y,w,h) {
-		
-		var rect1 = {x: this.x, y: this.y, width: this.w, height: this.h}
-		var rect2 = {x: x, y: y, width: w, height: h}
 
-		if (rect1.x < rect2.x + rect2.width &&
-			rect1.x + rect1.width > rect2.x &&
-			rect1.y < rect2.y + rect2.height &&
-			rect1.height + rect1.y > rect2.y) {
+		if(this.x < x+w && this.x+this.w > x && this.y < y+h && this.y + this.h > y ){
 			return true
 		}
 
 		return false
-		
+
 	}
 
 	
